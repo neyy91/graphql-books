@@ -6,7 +6,7 @@ import { ObjectType, Field, ID } from "type-graphql";
 export class Author extends BaseEntity {
 
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({name:'id'})
   authorId: number;
 
   @Field(() => String)

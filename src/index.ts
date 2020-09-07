@@ -7,7 +7,8 @@ import { buildSchema } from "type-graphql";
 import { BookResolver } from "./resolvers/BookResolver";
 import { AuthorResolver } from "./resolvers/AuthorResolver";
 
-async function main() {
+
+export async function main() {
   await createConnection({
     type: "mysql",
     host: process.env.DB_HOST,
@@ -25,7 +26,7 @@ async function main() {
   const schema = await buildSchema({ resolvers: [BookResolver, AuthorResolver] });
   const server = new ApolloServer({ schema });
   await server.listen(process.env.PORT_TEST);
-  console.log("Server has started!");
+  console.log("Server has started!",process.env.PORT_TEST);
 }
 
 main();

@@ -6,12 +6,12 @@ import { CreateAuthorInput } from "../inputs/AuthorBookInput";
 export class AuthorResolver {
 
   @Query(() => Author)
-  author(@Arg("id") id: number) {
+  author( id: number) { // @Arg("id")
     return Author.findOne({ where: { id } });
   }
 
   @Mutation(() => Author)
-  async addAuthor(@Arg("data") data: CreateAuthorInput) {
+  async addAuthor( data: CreateAuthorInput) { // @Arg("data")
     const author = Author.create(data);
     await author.save();
     return author;

@@ -10,17 +10,7 @@ export class BookResolver {
 
   @Query(() => String)
   hello() {
-    return "world";
-  }
-
-
-  @FieldResolver()
-  author(@Root() book: Book) {
-    return Author.findOne({
-      where: {
-        authorId: book.authorId
-      }
-    })
+    return "World-Z";
   }
 
   @Query(() => [Book])
@@ -30,7 +20,7 @@ export class BookResolver {
 
   @Query(() => Book)
   book(@Arg("id") id: string) {
-    return Book.findOne({ where: { id } });
+    return Book.findOne({ where: { bookId: id } });
   }
 
 
@@ -39,6 +29,15 @@ export class BookResolver {
     const book = Book.create(data);
     await book.save();
     return book;
+  }
+
+  @FieldResolver()
+  author(@Root() book: Book) {
+    return Author.findOne({
+      where: {
+        authorId: book.authorId
+      }
+    })
   }
 
 }
